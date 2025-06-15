@@ -33,8 +33,8 @@ import org.springframework.core.io.Resource;
  * @author Kevin Seim
  * @since 1.2
  * @see StreamFactory
- * @see BeanIOFlatFileItemReader
- * @see BeanIOFlatFileItemWriter
+ * @see BeanFlatFileItemReader
+ * @see BeanFlatFileItemWriter
  */
 public class BeanStreamFactory implements FactoryBean {
 

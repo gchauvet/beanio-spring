@@ -56,7 +56,7 @@ public class BeanFlatFileItemReader<T> extends AbstractItemCountingItemStreamIte
     private BeanReaderErrorHandler errorHandler;
     
     /**
-     * Constructs a new <tt>BeanIOFlatFileItemReader</tt>.
+     * Constructs a new <tt>BeanFlatFileItemReader</tt>.
      */
     public BeanFlatFileItemReader() { 
         setName(ClassUtils.getShortName(BeanFlatFileItemReader.class));

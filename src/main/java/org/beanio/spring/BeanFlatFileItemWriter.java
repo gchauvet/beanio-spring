@@ -68,7 +68,7 @@ public class BeanFlatFileItemWriter<T> implements ItemStream, ItemWriter<T>, Res
     private Stream stream;
 
     /**
-     * Constructs a new <tt>BeanIOFlatFileItemWriter</tt>.
+     * Constructs a new <tt>BeanFlatFileItemWriter</tt>.
      */
     public BeanFlatFileItemWriter() {
         setName(ClassUtils.getShortName(BeanFlatFileItemWriter.class));
