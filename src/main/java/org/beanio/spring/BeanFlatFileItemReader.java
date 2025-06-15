@@ -37,7 +37,7 @@ import org.springframework.util.*;
  * @since 1.2
  * @param <T> Class type read from the file
  */
-public class BeanIOFlatFileItemReader<T> extends AbstractItemCountingItemStreamItemReader<T>
+public class BeanFlatFileItemReader<T> extends AbstractItemCountingItemStreamItemReader<T>
     implements ResourceAwareItemReaderItemStream<T>, InitializingBean {
 
     private static final String DEFAULT_CHARSET = Charset.defaultCharset().name();
@@ -58,8 +58,8 @@ public class BeanIOFlatFileItemReader<T> extends AbstractItemCountingItemStreamI
     /**
      * Constructs a new <tt>BeanIOFlatFileItemReader</tt>.
      */
-    public BeanIOFlatFileItemReader() { 
-        setName(ClassUtils.getShortName(BeanIOFlatFileItemReader.class));
+    public BeanFlatFileItemReader() { 
+        setName(ClassUtils.getShortName(BeanFlatFileItemReader.class));
     }
     
     /*

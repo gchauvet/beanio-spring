@@ -21,15 +21,15 @@ import org.springframework.batch.item.*;
 import org.springframework.core.io.ClassPathResource;
 
 /**
- * JUnit test cases for the {@link BeanIOFlatFileItemReader} class.
+ * JUnit test cases for the {@link BeanFlatFileItemReader} class.
  * @author Kevin Seim
  * @since 1.2
  */
-public class BeanIOFlatFileItemReaderTest {
+public class BeanFlatFileItemReaderTest {
 
     @Test
     public void testInputFileNotFound() throws Exception {
-        BeanIOFlatFileItemReader<Object> reader = new BeanIOFlatFileItemReader<Object>();
+        BeanFlatFileItemReader<Object> reader = new BeanFlatFileItemReader<Object>();
         reader.setStrict(false);
         reader.setStreamName("stream1");
         reader.setStreamMapping(new ClassPathResource("spring_mapping1.xml", getClass()));
@@ -44,7 +44,7 @@ public class BeanIOFlatFileItemReaderTest {
     
     @Test(expected=ItemStreamException.class)
     public void testInputFileNotFoundAndStrict() throws Exception {
-        BeanIOFlatFileItemReader<Object> reader = new BeanIOFlatFileItemReader<Object>();
+        BeanFlatFileItemReader<Object> reader = new BeanFlatFileItemReader<Object>();
         reader.setStreamName("stream1");
         reader.setStreamMapping(new ClassPathResource("spring_mapping1.xml", getClass()));
         reader.setResource(new ClassPathResource("doesnotexist.txt", getClass()));
@@ -54,7 +54,7 @@ public class BeanIOFlatFileItemReaderTest {
     
     @Test(expected=IllegalStateException.class)
     public void testInvalidStreamName() throws Exception {
-        BeanIOFlatFileItemReader<Object> reader = new BeanIOFlatFileItemReader<Object>();
+        BeanFlatFileItemReader<Object> reader = new BeanFlatFileItemReader<Object>();
         reader.setStreamName("xxx");
         reader.setStreamMapping(new ClassPathResource("spring_mapping1.xml", getClass()));
         reader.setResource(new ClassPathResource("doesnotexist.txt", getClass()));

@@ -24,33 +24,33 @@ import org.junit.Test;
 import org.springframework.core.io.*;
 
 /**
- * JUnit test cases for the {@link BeanIOStreamFactory}.
+ * JUnit test cases for the {@link BeanStreamFactory}.
  * @author Kevin Seim
  * @since 1.2
  */
-public class BeanIOStreamFactoryTest {
+public class BeanStreamFactoryTest {
 
     @Test(expected=BeanIOConfigurationException.class)
     public void testMappingNotFound() throws Exception {
         Resource res = new ClassPathResource("/test/doesnotexist.xml");
         
-        BeanIOStreamFactory sf = new BeanIOStreamFactory();
+        BeanStreamFactory sf = new BeanStreamFactory();
         sf.setStreamMappings(Arrays.asList(new Resource[] { res }));
         sf.createStreamFactory();
     }
     
     @Test(expected=BeanIOConfigurationException.class)
     public void testInvalidMapping() throws Exception {
-        Resource res = new ClassPathResource("invalid_mapping.xml", BeanIOStreamFactoryTest.class);
+        Resource res = new ClassPathResource("invalid_mapping.xml", BeanStreamFactoryTest.class);
         
-        BeanIOStreamFactory sf = new BeanIOStreamFactory();
+        BeanStreamFactory sf = new BeanStreamFactory();
         sf.setStreamMappings(Arrays.asList(new Resource[] { res }));
         sf.createStreamFactory();
     }
     
     @Test
     public void testMethod_getObjectType() throws Exception {
-        BeanIOStreamFactory sf = new BeanIOStreamFactory();
+        BeanStreamFactory sf = new BeanStreamFactory();
         assertEquals(StreamFactory.class, sf.getObjectType());
     }
 }

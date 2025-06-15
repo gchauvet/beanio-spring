@@ -5,7 +5,7 @@
            http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
       default-lazy-init="true">
 
-  <bean id="streamFactory" class="org.beanio.spring.BeanIOStreamFactory">
+  <bean id="streamFactory" class="org.beanio.spring.BeanStreamFactory">
     <property name="streamMappings">
       <list>
         <value>classpath:/org/beanio/spring/spring_mapping1.xml</value>
@@ -14,9 +14,9 @@
     </property>
   </bean>
 
-  <bean id="streamFactory-empty" class="org.beanio.spring.BeanIOStreamFactory" />
+  <bean id="streamFactory-empty" class="org.beanio.spring.BeanStreamFactory" />
 
-  <bean id="itemReader-standalone" class="org.beanio.spring.BeanIOFlatFileItemReader">
+  <bean id="itemReader-standalone" class="org.beanio.spring.BeanFlatFileItemReader">
     <property name="streamMapping" value="classpath:/org/beanio/spring/spring_mapping1.xml" />
     <property name="streamName" value="stream1" />
     <property name="resource" value="classpath:/org/beanio/spring/in.txt" />
@@ -24,26 +24,26 @@
     <property name="locale" value="en_US_1_ignored" />
   </bean>
   
-  <bean id="itemReader-sharedFactory" class="org.beanio.spring.BeanIOFlatFileItemReader">
+  <bean id="itemReader-sharedFactory" class="org.beanio.spring.BeanFlatFileItemReader">
     <property name="streamFactory" ref="streamFactory" />
     <property name="streamName" value="stream1" />
     <property name="resource" value="classpath:/org/beanio/spring/in.txt" />
   </bean>
 
-  <bean id="itemReader-restart" class="org.beanio.spring.BeanIOFlatFileItemReader">
+  <bean id="itemReader-restart" class="org.beanio.spring.BeanFlatFileItemReader">
     <property name="streamMapping" value="classpath:/org/beanio/spring/spring_mapping1.xml" />
     <property name="streamName" value="stream1" />
     <property name="resource" value="classpath:/org/beanio/spring/in.txt" />
   </bean>
   
-  <bean id="itemWriter-standalone" class="org.beanio.spring.BeanIOFlatFileItemWriter">
+  <bean id="itemWriter-standalone" class="org.beanio.spring.BeanFlatFileItemWriter">
     <property name="streamMapping" value="classpath:/org/beanio/spring/spring_mapping1.xml" />
     <property name="streamName" value="stream1" />
     <property name="resource" value="file:data/out.txt" />
     <property name="encoding" value="UTF-8" />
   </bean>
 
-  <bean id="itemWriter-append" class="org.beanio.spring.BeanIOFlatFileItemWriter">
+  <bean id="itemWriter-append" class="org.beanio.spring.BeanFlatFileItemWriter">
     <property name="streamFactory" ref="streamFactory" />
     <property name="streamName" value="stream1" />
     <property name="resource" value="file:data/out.txt" />
@@ -51,10 +51,9 @@
     <property name="saveState" value="false" />
   </bean>
 
-  <bean id="itemWriter-xml" scope="prototype" class="org.beanio.spring.BeanIOFlatFileItemWriter">
+  <bean id="itemWriter-xml" scope="prototype" class="org.beanio.spring.BeanFlatFileItemWriter">
     <property name="streamFactory" ref="streamFactory" />
     <property name="streamName" value="xmlstream" />
-    <!-- property name="resource" value="file:data/out.txt" /-->
   </bean>
 
 </beans>

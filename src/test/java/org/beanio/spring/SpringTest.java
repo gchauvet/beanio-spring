@@ -120,7 +120,7 @@ public class SpringTest {
         
         try {
             ExecutionContext executionContext = new ExecutionContext();
-            executionContext.put("BeanIOFlatFileItemReader.read.count", new Integer(2));
+            executionContext.put("BeanFlatFileItemReader.read.count", new Integer(2));
             
             reader.open(executionContext);
             
@@ -145,7 +145,7 @@ public class SpringTest {
         File tempFile = File.createTempFile("beanio-", "xml");
         tempFile.deleteOnExit();
         
-        BeanIOFlatFileItemWriter<Map<String,Object>> writer = (BeanIOFlatFileItemWriter<Map<String,Object>>) 
+        BeanFlatFileItemWriter<Map<String,Object>> writer = (BeanFlatFileItemWriter<Map<String,Object>>) 
             context.getBean("itemWriter-standalone");
         writer.setResource(new FileSystemResource(tempFile));
         assertNotNull(writer);
@@ -160,14 +160,14 @@ public class SpringTest {
         writer.write(list);
         writer.update(ec);
         
-        long position = ec.getLong("BeanIOFlatFileItemWriter.current.count");
+        long position = ec.getLong("BeanFlatFileItemWriter.current.count");
         assertTrue(position > 0);
         
         writer.close();
         assertFileMatches("out1.txt", tempFile);
         
         // test appendAllowed = true, and saveState = false
-        writer = (BeanIOFlatFileItemWriter<Map<String,Object>>) context.getBean("itemWriter-append");
+        writer = (BeanFlatFileItemWriter<Map<String,Object>>) context.getBean("itemWriter-append");
         writer.setResource(new FileSystemResource(tempFile));
         assertNotNull(writer);
         writer.open(ec);
@@ -176,13 +176,13 @@ public class SpringTest {
         record.put("name", "Joe");
         writer.write(list);
         writer.update(ec);
-        assertEquals(position, ec.getLong("BeanIOFlatFileItemWriter.current.count"));
+        assertEquals(position, ec.getLong("BeanFlatFileItemWriter.current.count"));
         
         writer.close();
         assertFileMatches("out2.txt", tempFile);
         
         // test restart
-        writer = (BeanIOFlatFileItemWriter<Map<String,Object>>) context.getBean("itemWriter-standalone");
+        writer = (BeanFlatFileItemWriter<Map<String,Object>>) context.getBean("itemWriter-standalone");
         writer.setResource(new FileSystemResource(tempFile));
         assertNotNull(writer);
         writer.open(ec);
@@ -190,7 +190,7 @@ public class SpringTest {
         record.put("name", "Kevin");
         writer.write(list);
         writer.update(ec);
-        assertTrue(ec.getLong("BeanIOFlatFileItemWriter.current.count") > position);
+        assertTrue(ec.getLong("BeanFlatFileItemWriter.current.count") > position);
         
         writer.close();
         assertFileMatches("out3.txt", tempFile);
@@ -207,7 +207,7 @@ public class SpringTest {
         File tempFile = File.createTempFile("beanio-", "xml");
         tempFile.deleteOnExit();
         
-        BeanIOFlatFileItemWriter<Human> writer = (BeanIOFlatFileItemWriter<Human>) context.getBean("itemWriter-xml");
+        BeanFlatFileItemWriter<Human> writer = (BeanFlatFileItemWriter<Human>) context.getBean("itemWriter-xml");
         writer.setResource(new FileSystemResource(tempFile));
         writer.open(ec);
         
@@ -216,7 +216,7 @@ public class SpringTest {
         writer.write(list);
         writer.update(ec);
         
-        long position = ec.getLong("BeanIOFlatFileItemWriter.current.count");
+        long position = ec.getLong("BeanFlatFileItemWriter.current.count");
         assertTrue(position > 0);
         
         list.clear();
@@ -227,7 +227,7 @@ public class SpringTest {
         assertFileMatches("xout1.xml", tempFile);
         
         // open for restart
-        writer = (BeanIOFlatFileItemWriter<Human>) context.getBean("itemWriter-xml");
+        writer = (BeanFlatFileItemWriter<Human>) context.getBean("itemWriter-xml");
         writer.setResource(new FileSystemResource(tempFile));
         writer.open(ec);
         

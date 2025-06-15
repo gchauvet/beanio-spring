@@ -36,7 +36,7 @@ import org.springframework.core.io.Resource;
  * @see BeanIOFlatFileItemReader
  * @see BeanIOFlatFileItemWriter
  */
-public class BeanIOStreamFactory implements FactoryBean {
+public class BeanStreamFactory implements FactoryBean {
 
     private StreamFactory streamFactory;
     private List<Resource> streamMappings;

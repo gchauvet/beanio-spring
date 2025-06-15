@@ -41,7 +41,7 @@ import org.springframework.util.*;
  * @since 1.2
  * @param <T> Class type written to the file
  */
-public class BeanIOFlatFileItemWriter<T> implements ItemStream, ItemWriter<T>, ResourceAwareItemWriterItemStream<T>, InitializingBean {
+public class BeanFlatFileItemWriter<T> implements ItemStream, ItemWriter<T>, ResourceAwareItemWriterItemStream<T>, InitializingBean {
 
     private static final String DEFAULT_CHARSET = Charset.defaultCharset().name();
     private static final String DEFAULT_LINE_SEPARATOR = System.getProperty("line.separator");
@@ -70,8 +70,8 @@ public class BeanIOFlatFileItemWriter<T> implements ItemStream, ItemWriter<T>, R
     /**
      * Constructs a new <tt>BeanIOFlatFileItemWriter</tt>.
      */
-    public BeanIOFlatFileItemWriter() {
-        setName(ClassUtils.getShortName(BeanIOFlatFileItemWriter.class));
+    public BeanFlatFileItemWriter() {
+        setName(ClassUtils.getShortName(BeanFlatFileItemWriter.class));
     }
     
     /*
